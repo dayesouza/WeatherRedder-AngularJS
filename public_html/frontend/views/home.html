@@ -1,0 +1,36 @@
+<div class="row" ng-controller="WeatherCtrl as weather">
+  <div id="div_form" class="col-md-12 form-group">
+    <h1 class="text-primary">Weather Redder</h1>
+    <h3 class="">You cand find out how's the weather anywhere! </h3>
+    <form id="fo" class="form-horizontal">
+      <div class="alert alert-warning col-md-12" role="alert" ng-show="weather.invalid"><strong>{{weather.invalid}}</strong></div>
+      <div class="col-md-3">
+        <label for="city" class="control-label">Type the city and the country: </label>
+      </div>
+      <div class="col-md-6">
+        <input type="text" id="city" ng-model="weather.city"  name="name_place" class="form-control" required></input>
+      </div>
+      <div class="col-md-2 form-group">
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" ng-class="{'active': weather.unit == 'C'}" ng-click="weather.unit = 'C'" class="btn btn-default">ºC</button>
+          <button type="button" ng-class="{'active': weather.unit == 'F'}" ng-click="weather.unit = 'F'" class="btn btn-default">ºF</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <input type="button" class="btn btn-primary pull-right" ng-disabled="!weather.city" ng-click="findWeather(weather)" value="Find" />
+      </div>
+
+    </form>
+  </div>
+
+  <div class="alert col-md-7 col-md-offset-2 text-center" ng-class="{'alert-info': weather.type ==='cold','alert-danger': weather.type==='hot'}" ng-show="weather.title && !weather.invalid">
+    <p><strong>{{weather.title}}</strong></p>
+    <p>{{weather.date}}</p>
+    <p><strong>Temperature: </strong>{{weather.temperature}}º{{weather.unit}}</p>
+    <p><strong>Situation: </strong>{{weather.situation}}</p>
+
+  </div>
+
+  <div class="alert alert-danger col-md-12" role="alert" ng-show="weather.error"><strong>{{weather.error}}</strong></div>
+
+</div>
